@@ -6,7 +6,7 @@ GPIO.setup(20, GPIO.IN)  # set a port/pin as an input
 GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input 
 GPIO.setup(2, GPIO.OUT)  # set a port/pin as an input 
 GPIO.setup(3, GPIO.OUT)  # set a port/pin as an input 
-
+# servo numero 1
 min_angle = 55
 max_angle = 65
 m = GPIO.PWM(10,360)
