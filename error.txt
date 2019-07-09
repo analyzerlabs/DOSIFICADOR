@@ -1,0 +1,3 @@
+	FECHA			MENSAJE
+
+2019-07-09 13:51:25	 Error , Excedio el tiempo de Apertura de la LLave

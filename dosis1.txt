@@ -1,0 +1,7 @@
+	FECHA			MENSAJE
+
+
+2019-07-09 13:51:25	 Intento de Dosificacion 
+2019-07-09 13:51:41	 Intento de Dosificacion 
+2019-07-09 13:55:09	 Intento de Dosificacion 
+2019-07-09 13:55:17	 Intento de Dosificacion 
