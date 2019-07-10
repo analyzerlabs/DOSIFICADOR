@@ -59,8 +59,8 @@ class LimaEM:
 			if(t1 - t0 >= 10):
 				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Vacio")
 				t0 = t1
-				self.file_error.write(fecha + "\t Error , Excedio el tiempo de Apertura de la LLave\n")
-
+				self.file_error.write(fecha + "\t Error : Tiempo de Lectura Excedido , Error Tanque Vacio\n")
+				self.closeValve()
 				break
 		lastMeasure = GPIO.input(20)
 		t0 = time.time()
@@ -73,9 +73,9 @@ class LimaEM:
 				self.esperaNuevaLectura = 0
 			t1=time.time()
 			if(t1 - t0 >= 10):
-				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Agotado" + str(t1-t0))
+				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Agotado")
 				t0 = t1
-				self.file_error.write(fecha + "\t===== Error : Se Suministro Pero \n")
+				self.file_error.write(fecha + "\t Error : Tiempo de Lectura Excedido , Error Tanque Agotado\n")
 				break
 		self.cont = 0
 		self.ant_cont = 0
