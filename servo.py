@@ -15,7 +15,7 @@ class LimaEM:
 		print ("El volumen a medir sera de : " + str(self.v))
 		time.sleep(3)
 		GPIO.setmode(GPIO.BCM)            # choose BCM or BOARD
-		GPIO.setwarning(False)
+		GPIO.setwarnings(False)
 		GPIO.cleanup()
 		GPIO.setup(20, GPIO.IN)  # set a port/pin as an input
 		GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input
