@@ -102,6 +102,7 @@ last_time = time.strftime("%S")
 while True:
 	if(int(hora)%2 == 0 and int(minuto)%2 ==0):
 		fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
+		print("\t--------------------------------- ")
 		print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
 		print("\t===== FECHA : " + fecha) 
 		carnes.openValve()
