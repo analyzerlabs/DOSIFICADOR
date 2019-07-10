@@ -6,10 +6,12 @@ import SDL_DS1307
 
 
 class LimaEM:
+	v = 0
 	cont = 0
 	ant_cont = 0
-	def __init__(self):
+	def __init__(self,volumen):
 #		ds1307.write_now()
+		self.v = int(volumen / 2.5)
 		GPIO.setmode(GPIO.BCM)            # choose BCM or BOARD
 		GPIO.setup(20, GPIO.IN)  # set a port/pin as an input
 		GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input
@@ -38,22 +40,27 @@ class LimaEM:
 		for i in range(0,11):
 			time.sleep(0.03)
 			self.m.ChangeDutyCycle(self.min_angle+i)
-
+		self.m.stop()
+		
 	def measureVolume(self,fecha):
 		t0 = time.time()
 		while GPIO.input(20) != 0 :
 			time.sleep(0.0001)
+			# el volumen se define aqui 
+			if(t1 - t0 >= v):
+				t0 = t1
+				self.file_error.write(fecha + "\t Error , Excedio el tiempo de Apertura de la LLave\n")
+				break
 		lastMeasure = GPIO.input(20)
 		while self.cont < 10:
 			if(GPIO.input(20)==1  and lastMeasure == 0):
 				self.cont += 1
 				while(GPIO.input(20) != 0):
 					print (" ")
-
 				self.ant_cont = self.cont
-				print self.ant_cont
 			t1=time.time()
 			if(t1 - t0 >= 10):
+				print("\t\t puede haber error  en " + str(10-t1+t0))
 				t0 = t1
 				self.file_error.write(fecha + "\t Error , Excedio el tiempo de Apertura de la LLave\n")
 				break
@@ -67,19 +74,18 @@ class LimaEM:
 	def printCount(self):
 		print self.cont
 
-ds1307 = SDL_DS1307.SDL_DS1307(1, 0x68)
-#ds1307.write_now()
-
-carnes = LimaEM()
-
+carnes = LimaEM(150)
+hora = strftime("%H")
+minuto = strftime("%M")
 while True:
-	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
-	carnes.openValve()
-	carnes.measureVolume(fecha)
-	carnes.closeValve()
-	time.sleep(5)
-	carnes.printCount()
-
+	if(int(hora)%4 == 0 and int(minuto) == 25)
+		fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
+		carnes.openValve()
+		carnes.measureVolume(fecha)
+		carnes.closeValve()
+		time.sleep(100)
+	hora = strftime("%H")
+	minuto = strftime("%M")
 
 
 
