@@ -7,15 +7,16 @@ import SDL_DS1307
 
 class LimaEM:
 	Serie = 1
+	volumen = [400,150,150,150,150,150,150,150,150,150,150,150]
 	error = [5,25,25,35,45,55,65,15,25,24,23,12]
 	v = 0
 	cont = 0
 	ant_cont = 0
 	esperaNuevaLectura = 0
-	def __init__(self,volumen,serie):
+	def __init__(self,serie):
 		self.Serie = serie
 #		ds1307.write_now()
-		self.v = int(volumen / 2.5) + self.error[self.Serie-1] 
+		self.v = int(self.volumen[self.Serie-1] / 2.5) + self.error[self.Serie-1] 
 		print ("El volumen a medir sera de : " + str(volumen) + " mL")
 		time.sleep(3)
 		GPIO.setmode(GPIO.BCM)            # choose BCM or BOARD
@@ -98,7 +99,7 @@ def calcSeconds(t):
 	else:
 		y = time.strftime("%S")
 		
-carnes = LimaEM(100,1)
+carnes = LimaEM(1)
 hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
