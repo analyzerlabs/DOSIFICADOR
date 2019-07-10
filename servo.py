@@ -6,7 +6,7 @@ import SDL_DS1307
 
 
 class LimaEM:
-	error = 24
+	error = 10
 	v = 0
 	cont = 0
 	ant_cont = 0
