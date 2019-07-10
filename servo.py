@@ -13,6 +13,7 @@ class LimaEM:
 #		ds1307.write_now()
 		self.v = int(volumen / 2.5)
 		GPIO.setmode(GPIO.BCM)            # choose BCM or BOARD
+		GPIO.cleanup()
 		GPIO.setup(20, GPIO.IN)  # set a port/pin as an input
 		GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(2, GPIO.OUT)  # set a port/pin as an input
@@ -48,6 +49,7 @@ class LimaEM:
 	def measureVolume(self,fecha):
 		t0 = time.time()
 		while GPIO.input(20) != 0 :
+			print("wrong")
 			time.sleep(0.0001)
 			# el volumen se define aqui 
 			if(t1 - t0 >= 10):
@@ -77,9 +79,18 @@ class LimaEM:
 	def printCount(self):
 		print self.cont
 
+		
+def calcSeconds(t):
+	x = time.strftime("%S")
+	if(abs(y-x) == t):
+		
+	else
+		y = time.strftime("%S")
+		
 carnes = LimaEM(150)
-hora = strftime("%H")
-minuto = strftime("%M")
+hora = time.strftime("%H")
+minuto = time.strftime("%M")
+last_time = time.strftime("%S")
 while True:
 	if(int(hora)%4 == 0 and int(minuto) == 25)
 		fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
@@ -87,9 +98,9 @@ while True:
 		carnes.measureVolume(fecha)
 		carnes.closeValve()
 		time.sleep(100)
-	hora = strftime("%H")
-	minuto = strftime("%M")
-
+	hora = time.strftime("%H")
+	minuto = time.strftime("%M")
+	
 
 
 
