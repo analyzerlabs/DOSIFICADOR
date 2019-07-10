@@ -12,6 +12,8 @@ class LimaEM:
 	def __init__(self,volumen):
 #		ds1307.write_now()
 		self.v = int(volumen / 2.5)
+		print ("El volumen a medir sera de : " + self.v)
+		time.sleep(3)
 		GPIO.setmode(GPIO.BCM)            # choose BCM or BOARD
 		GPIO.cleanup()
 		GPIO.setup(20, GPIO.IN)  # set a port/pin as an input
@@ -51,13 +53,15 @@ class LimaEM:
 		while GPIO.input(20) != 0 :
 			print("wrong")
 			time.sleep(0.0001)
+			t1 = time.time()
 			# el volumen se define aqui 
 			if(t1 - t0 >= 10):
 				t0 = t1
 				self.file_error.write(fecha + "\t Error , Excedio el tiempo de Apertura de la LLave\n")
 				break
 		lastMeasure = GPIO.input(20)
-		while self.cont < v :
+		t0 = time.time()
+		while self.cont < self.v :
 			if(GPIO.input(20)==1  and lastMeasure == 0):
 				self.cont += 1
 				while(GPIO.input(20) != 0):
@@ -65,7 +69,7 @@ class LimaEM:
 				self.ant_cont = self.cont
 			t1=time.time()
 			if(t1 - t0 >= 10):
-				print("\t\t puede haber error  en " + str(10-t1+t0))
+				print("\t\t puede haber error  en " + str(t1-t0))
 				t0 = t1
 				self.file_error.write(fecha + "\t Error , Excedio el tiempo de Apertura de la LLave\n")
 				break
