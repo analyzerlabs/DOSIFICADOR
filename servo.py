@@ -61,6 +61,7 @@ class LimaEM:
 				t0 = t1
 				self.file_error.write(fecha + "\t Error , Excedio el tiempo de Apertura de la LLave\n")
 				break
+		print("salio del wrong")
 		lastMeasure = GPIO.input(20)
 		t0 = time.time()
 		while self.cont < self.v :
@@ -101,6 +102,8 @@ last_time = time.strftime("%S")
 while True:
 	if(int(hora)%2 == 0 and int(minuto)%2 ==0):
 		fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
+		print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
+		print("\t===== FECHA : " + fecha) 
 		carnes.openValve()
 		carnes.measureVolume(fecha)
 		carnes.closeValve()
