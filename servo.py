@@ -83,8 +83,8 @@ class LimaEM:
 def calcSeconds(t):
 	x = time.strftime("%S")
 	if(abs(y-x) == t):
-		
-	else
+		print "kek"
+	else:
 		y = time.strftime("%S")
 		
 carnes = LimaEM(150)
@@ -92,7 +92,7 @@ hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 while True:
-	if(int(hora)%4 == 0 and int(minuto) == 25)
+	if(int(hora)%4 == 0 and int(minuto) == 25):
 		fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 		carnes.openValve()
 		carnes.measureVolume(fecha)
