@@ -26,18 +26,21 @@ class LimaEM:
 		self.m.start(self.max_angle)
 		self.file_dosis = open("dosis1.txt","a")
 		self.file_error = open("error1.txt","a")
+		GPIO.output(4,GPIO.HIGH)
+		GPIO.output(17,GPIO.HIGH)
+		
 
 	def counter(self,pin):
 		self.cont += 1
 		print self.cont
 
 	def openValve(self):
-		for i in range(0,11):
+		for i in range(0,12):
 			time.sleep(0.03)
 			self.m.ChangeDutyCycle(self.max_angle-i)
 
 	def closeValve(self):
-		for i in range(0,11):
+		for i in range(0,12):
 			time.sleep(0.03)
 			self.m.ChangeDutyCycle(self.min_angle+i)
 		self.m.stop()
@@ -47,12 +50,12 @@ class LimaEM:
 		while GPIO.input(20) != 0 :
 			time.sleep(0.0001)
 			# el volumen se define aqui 
-			if(t1 - t0 >= v):
+			if(t1 - t0 >= 10):
 				t0 = t1
 				self.file_error.write(fecha + "\t Error , Excedio el tiempo de Apertura de la LLave\n")
 				break
 		lastMeasure = GPIO.input(20)
-		while self.cont < 10:
+		while self.cont < v :
 			if(GPIO.input(20)==1  and lastMeasure == 0):
 				self.cont += 1
 				while(GPIO.input(20) != 0):
