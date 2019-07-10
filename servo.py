@@ -44,7 +44,7 @@ class LimaEM:
 		for i in range(0,12):
 			time.sleep(0.03)
 			self.m.ChangeDutyCycle(self.min_angle+i)
-		self.m.stop()
+		
 		
 	def measureVolume(self,fecha):
 		t0 = time.time()
