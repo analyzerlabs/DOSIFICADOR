@@ -17,7 +17,7 @@ class LimaEM:
 		self.Serie = serie
 #		ds1307.write_now()
 		self.v = int(self.volumen[self.Serie-1] / 2.5) + self.error[self.Serie-1] 
-		print ("El volumen a medir sera de : " + str(volumen) + " mL")
+		print ("El volumen a medir sera de : " + str(self.volumen[self.Serie-1])) + " mL")
 		time.sleep(3)
 		GPIO.setmode(GPIO.BCM)            # choose BCM or BOARD
 		GPIO.setwarnings(False)
