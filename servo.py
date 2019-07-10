@@ -66,8 +66,9 @@ class LimaEM:
 			if(GPIO.input(20)==1  and lastMeasure == 0):
 				self.cont += 1
 				while(GPIO.input(20) != 0):
-					print (" ")
+					self.esperaNuevaLectura +=0
 				self.ant_cont = self.cont
+				self.esperaNuevaLectura = 0
 			t1=time.time()
 			if(t1 - t0 >= 10):
 				print("\t\t puede haber error  en " + str(t1-t0))
@@ -104,8 +105,7 @@ while True:
 		carnes.closeValve()
 		time.sleep(100)
 	hora = time.strftime("%H")
-	minuto = time.strftime("%M")
-	
+	minuto = time.strftime("%M")	
 
 
 
