@@ -9,6 +9,7 @@ class LimaEM:
 	v = 0
 	cont = 0
 	ant_cont = 0
+	esperaNuevaLectura = 0
 	def __init__(self,volumen):
 #		ds1307.write_now()
 		self.v = int(volumen / 2.5)
