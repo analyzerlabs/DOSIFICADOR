@@ -80,6 +80,7 @@ class LimaEM:
 				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Agotado")
 				t0 = t1
 				self.file_error.write(fecha + "\t Error : Tiempo de Lectura Excedido , Error Tanque Agotado\n")
+				self.closeValve()
 				break
 		self.cont = 0
 		self.ant_cont = 0
