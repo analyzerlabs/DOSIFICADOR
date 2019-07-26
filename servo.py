@@ -8,7 +8,7 @@ import SDL_DS1307
 class LimaEM:
 	Serie = 1
 	volumen = [666,276,555,555,222,0,0,0,0,0,0,0]
-	error = [-5,25,-4,0,0,0,0,0,0,0,0,0]
+	error = [-5,25,-4,10,19,0,0,0,0,0,0,0]
 	v = 0
 	cont = 0
 	ant_cont = 0
