@@ -7,8 +7,8 @@ import SDL_DS1307
 
 class LimaEM:
 	Serie = 1
-	volumen = [400,150,150,150,150,150,150,150,150,150,150,150]
-	error = [-5,25,25,35,45,55,65,15,25,24,23,12]
+	volumen = [666,276,555,555,222,0,0,0,0,0,0,0]
+	error = [-5,25,-4,0,0,0,0,0,0,0,0,0]
 	v = 0
 	cont = 0
 	ant_cont = 0
@@ -60,12 +60,12 @@ class LimaEM:
 			time.sleep(0.0001)
 			t1 = time.time()
 			# el volumen se define aqui 
-			if(t1 - t0 >= 10):
+			if(t1 - t0 >= 15):
 				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Vacio")
 				t0 = t1
 				self.file_error.write(fecha + "\t Error : Tiempo de Lectura Excedido , Error Tanque Vacio\n")
 				self.closeValve()
-				break
+				return 0
 		lastMeasure = GPIO.input(20)
 		t0 = time.time()
 		while self.cont < self.v :
@@ -76,16 +76,17 @@ class LimaEM:
 				self.ant_cont = self.cont
 				self.esperaNuevaLectura = 0
 			t1=time.time()
-			if(t1 - t0 >= 10):
+			if(t1 - t0 >= 15):
 				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Agotado")
 				t0 = t1
 				self.file_error.write(fecha + "\t Error : Tiempo de Lectura Excedido , Error Tanque Agotado\n")
 				self.closeValve()
-				break
+				return 0
 		self.cont = 0
 		self.ant_cont = 0
 		self.file_dosis.write(fecha + "\t Intento de Dosificacion \n")
-
+		carnes.closeValve()
+		
 	def blinkLed(self,pin,state):
 		GPIO.output(pin,state)
 
@@ -105,17 +106,13 @@ hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 while True:
-	if(int(hora)%2 == 0 and int(minuto)%2 ==0):
+	if(int(hora)%1 == 0 and int(minuto)%1 ==0):
 		fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 		print("\t--------------------------------- ")
 		print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
 		print("\t===== FECHA : " + fecha) 
 		carnes.openValve()
 		carnes.measureVolume(fecha)
-		carnes.closeValve()
 		time.sleep(100)
 	hora = time.strftime("%H")
 	minuto = time.strftime("%M")	
-
-
-
