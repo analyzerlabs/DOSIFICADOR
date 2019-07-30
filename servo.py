@@ -125,8 +125,9 @@ while True:
 		carnes.openValve()
 		carnes.measureVolume(fecha)
 		carnes.closeFiles()
-		time.sleep(100)
+		time.sleep(60)
 	if(int(minuto)%5==0):
+		print("saving its alive")
 		carnes.openFiles()
 		carnes.file_itsalive.write(fecha + "\t Estor vivo PRR\n")
 		carnes.closeFiles()
