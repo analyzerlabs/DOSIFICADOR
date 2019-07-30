@@ -63,6 +63,7 @@ class LimaEM:
 		
 		
 	def measureVolume(self,fecha):
+		self.file_dosis.write(fecha + "\t Intento de Dosificacion \n")
 		t0 = time.time()
 		while GPIO.input(20) != 0 :
 			time.sleep(0.0001)
@@ -92,7 +93,7 @@ class LimaEM:
 				return 0
 		self.cont = 0
 		self.ant_cont = 0
-		self.file_dosis.write(fecha + "\t Intento de Dosificacion \n")
+		
 		carnes.closeValve()
 		
 	def blinkLed(self,pin,state):
