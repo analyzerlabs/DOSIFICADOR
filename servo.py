@@ -33,12 +33,20 @@ class LimaEM:
 		self.min_angle = 3
 		self.max_angle = 15
 		self.m.start(self.max_angle)
-		self.file_dosis = open("dosis1.txt","a")
-		self.file_error = open("error1.txt","a")
+		self.openFiles()
 		GPIO.output(4,GPIO.HIGH)
 		GPIO.output(17,GPIO.HIGH)
 		
-
+	def openFiles(self):
+		self.file_dosis = open("dosis1.txt","a")
+		self.file_error = open("error1.txt","a")
+		self.file_itsalive = open("itsalive1.txt","a")
+	
+	def closeFiles(self):
+		self.file_dosis.close()
+		self.file_error.close()
+		self.file_itsalive.close()
+		
 	def counter(self,pin):
 		self.cont += 1
 		print self.cont
@@ -106,13 +114,21 @@ hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 while True:
+	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
+	hora = time.strftime("%H")
+	minuto = time.strftime("%M")	
 	if(int(hora)%1 == 0 and int(minuto)%1 ==0):
-		fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
+		carnes.openFiles()
 		print("\t--------------------------------- ")
 		print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
 		print("\t===== FECHA : " + fecha) 
 		carnes.openValve()
 		carnes.measureVolume(fecha)
+		carnes.closeFiles()
 		time.sleep(100)
-	hora = time.strftime("%H")
-	minuto = time.strftime("%M")	
+	if(int(minuto)%5==0):
+		carnes.openFiles()
+		carnes.file_itsalive.write(fecha + "\t Estor vivo PRR\n")
+		carnes.closeFiles()
+	
+	
