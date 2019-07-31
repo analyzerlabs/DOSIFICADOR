@@ -63,12 +63,13 @@ class LimaEM:
 		
 		
 	def measureVolume(self,fecha):
+		self.file_dosis.write(fecha + "\t Intento de Dosificacion \n")
 		t0 = time.time()
 		while GPIO.input(20) != 0 :
 			time.sleep(0.0001)
 			t1 = time.time()
 			# el volumen se define aqui 
-			if(t1 - t0 >= 15):
+			if(t1 - t0 >= 20):
 				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Vacio")
 				t0 = t1
 				self.file_error.write(fecha + "\t Error : Tiempo de Lectura Excedido , Error Tanque Vacio\n")
@@ -84,7 +85,7 @@ class LimaEM:
 				self.ant_cont = self.cont
 				self.esperaNuevaLectura = 0
 			t1=time.time()
-			if(t1 - t0 >= 15):
+			if(t1 - t0 >= 20):
 				print("\t===== Error : Tiempo de Lectura Excedido , Error Tanque Agotado")
 				t0 = t1
 				self.file_error.write(fecha + "\t Error : Tiempo de Lectura Excedido , Error Tanque Agotado\n")
@@ -92,7 +93,6 @@ class LimaEM:
 				return 0
 		self.cont = 0
 		self.ant_cont = 0
-		self.file_dosis.write(fecha + "\t Intento de Dosificacion \n")
 		carnes.closeValve()
 		
 	def blinkLed(self,pin,state):
@@ -113,6 +113,7 @@ carnes = LimaEM(1)
 hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
+itsaliveFlag = False
 while True:
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora = time.strftime("%H")
@@ -126,10 +127,13 @@ while True:
 		carnes.measureVolume(fecha)
 		carnes.closeFiles()
 		time.sleep(60)
-	if(int(minuto)%5==0):
+	if(int(minuto)%5==0 and itsaliveFlag == True):
 		print("saving its alive")
 		carnes.openFiles()
 		carnes.file_itsalive.write(fecha + "\t Estor vivo PRR\n")
 		carnes.closeFiles()
-	
+		itsaliveFlag = False
+		
+	if(int(minuto)%5==1 and itsaliveFlag == False):
+		itsaliveFlag = True
 	
