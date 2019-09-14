@@ -115,7 +115,7 @@ condition = True
 
 while(condition):
 	print "wait"
-	sleep 2
+	time.sleep(2)
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora  = time.strftime("%H")
 	minuto = time.strftime("%M")
