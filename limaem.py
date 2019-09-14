@@ -39,10 +39,10 @@ class LimaEM:
 		
 	def openFiles(self):
 		self.file_id = open("/home/pi/id.txt","r")
-		self.file_intento = open("intento1.txt","a")
-		self.file_dosis = open("dosis1.txt","a")
-		self.file_error = open("error1.txt","a")
-		self.file_itsalive = open("itsalive1.txt","a")
+		self.file_intento = open("/home/pi/intento.txt","a")
+		self.file_dosis = open("/home/pi/dosis.txt","a")
+		self.file_error = open("/home/pi/error.txt","a")
+		self.file_itsalive = open("/home/pi/itsalive.txt","a")
 	
 	def closeFiles(self):
 		self.file_intento.close()
@@ -115,7 +115,7 @@ itsaliveFlag = False
 fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 hora = time.strftime("%H")
 minuto = time.strftime("%M")	
-if(int(hora)%4 == 3 and int(minuto)%6 == 0):
+if(int(hora)%1 == 0 and int(minuto)%1 == 0):
 	carnes.openFiles()
 	print("\t--------------------------------- ")
 	print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
@@ -124,8 +124,8 @@ if(int(hora)%4 == 3 and int(minuto)%6 == 0):
 	vol = carnes.measureVolume(fecha)
 	carnes.file_dosis.write("\t"+ fecha + "\t volumen= "+ str(2.5*(vol+carnes.error[carnes.Serie-1])))
 	carnes.closeFiles()
+	GPIO.setup(10,GPIO.IN)
 	GPIO.cleanup()
-	time.sleep(60)
 if(int(minuto)%5 == 0 and itsaliveFlag == True):
 	print("saving its alive")
 	carnes.openFiles()
