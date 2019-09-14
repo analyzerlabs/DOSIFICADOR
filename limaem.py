@@ -57,15 +57,16 @@ class LimaEM:
 		print self.cont
 
 	def openValve(self):
-		for i in range(0,12):
+		for i in range(0,13):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.max_angle[self.Serie-1]-i)
 
 	def closeValve(self):
-		for i in range(0,12):
+		for i in range(0,13):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+i)
-		
+		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+12)	
+		self.m.stop()
 		
 	def measureVolume(self,fecha):
 		self.file_intento.write(fecha + "\t Intento de Dosificacion \n")
@@ -106,14 +107,7 @@ class LimaEM:
 	def printCount(self):
 		print self.cont
 
-		
-def calcSeconds(t):
-	x = time.strftime("%S")
-	if(abs(y-x) == t):
-		print "kek"
-	else:
-		y = time.strftime("%S")
-		
+				
 carnes = LimaEM(1)
 hora = time.strftime("%H")
 minuto = time.strftime("%M")
@@ -131,6 +125,7 @@ if(int(hora)%1 == 0 and int(minuto)%1 ==0):
 	carnes.openValve()
 	vol = carnes.measureVolume(fecha)
 	carnes.closeFiles()
+	GPIO.cleanup()
 	time.sleep(60)
 if(int(minuto)%5==0 and itsaliveFlag == True):
 	print("saving its alive")
