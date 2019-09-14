@@ -112,10 +112,12 @@ minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 itsaliveFlag = False
 condition = True
+
 while(condition):
 	print "wait"
+	sleep 2
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
-	hora = time.strftime("%H")
+	hora  = time.strftime("%H")
 	minuto = time.strftime("%M")
 	if(int(hora)%4 == 3 and int(minuto) == 54):
 		condition = False
