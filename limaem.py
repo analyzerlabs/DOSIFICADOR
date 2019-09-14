@@ -118,8 +118,8 @@ while(int(hora)%4 != 3 and int(minuto) != 54):
 	minuto = time.strftime("%M")
 	if(int(hora)%4 == 3 and int(minuto) == 54):
 		break
-	
-if(int(hora)%4 == 3 and int(minuto) == 51):
+
+if(int(hora)%4 == 3 and int(minuto) == 54):
 	carnes.openFiles()
 	print("\t--------------------------------- ")
 	print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
