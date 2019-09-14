@@ -56,12 +56,12 @@ class LimaEM:
 
 	def openValve(self):
 		for i in range(0,14):
-			time.sleep(0.05)
+			time.sleep(0.08)
 			self.m.ChangeDutyCycle(self.max_angle[self.Serie-1]-i)
 
 	def closeValve(self):
 		for i in range(0,14):
-			time.sleep(0.05)
+			time.sleep(0.08)
 			self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+i)
 		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+13)	
 		self.m.stop()
@@ -119,7 +119,7 @@ while(condition):
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora  = time.strftime("%H")
 	minuto = time.strftime("%M")
-	if(int(hora)%4 == 1 and int(minuto) == 49):
+	if(int(hora)%4 == 1 and int(minuto) == 49	):
 		condition = False
 
 
