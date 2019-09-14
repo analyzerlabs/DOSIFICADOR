@@ -4,7 +4,6 @@ import time
 import datetime
 import SDL_DS1307
 
-#test
 class LimaEM:
 	Serie = 1
 	volumen = [666,276,555,555,222,0,555,222,0,0,0,0]
