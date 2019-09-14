@@ -111,13 +111,15 @@ hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 itsaliveFlag = False
-while(int(hora)%4 != 3 and int(minuto) != 54):
+condition = True
+while(condition):
 	print "wait"
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora = time.strftime("%H")
 	minuto = time.strftime("%M")
 	if(int(hora)%4 == 3 and int(minuto) == 54):
-		break
+		condition = False
+
 
 if(int(hora)%4 == 3 and int(minuto) == 54):
 	carnes.openFiles()
