@@ -4,9 +4,9 @@ cd /home/pi/DOSIFICADOR
 while true;do
 	echo "====================================="
 	echo "============ Actualizando ==========="
-	git pull origin master
+	sudo git pull origin master
 	echo "====================================="
 	echo "========== Ejecuta Software ========="
-	python limaem.py &
+	sudo python limaem.py &
 	sleep 14400
 done
