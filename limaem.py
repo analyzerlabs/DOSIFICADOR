@@ -115,7 +115,7 @@ itsaliveFlag = False
 fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 hora = time.strftime("%H")
 minuto = time.strftime("%M")	
-if(int(hora)%1 == 0 and int(minuto)%1 == 0):
+if(int(hora)%4 == 3 and int(minuto)%6 == 0):
 	carnes.openFiles()
 	print("\t--------------------------------- ")
 	print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
