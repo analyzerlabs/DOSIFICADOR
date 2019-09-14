@@ -124,13 +124,14 @@ if(int(hora)%1 == 0 and int(minuto)%1 == 0):
 	print("\t===== FECHA : " + fecha) 
 	carnes.openValve()
 	vol = carnes.measureVolume(fecha)
+	carnes.file_dosis.write("\t"+ fecha + "\t volumen= "+ 2.5*(vol+carnes.error[carnes.Serie-1]))
 	carnes.closeFiles()
 	GPIO.cleanup()
 	time.sleep(60)
 if(int(minuto)%5 == 0 and itsaliveFlag == True):
 	print("saving its alive")
 	carnes.openFiles()
-	carnes.file_itsalive.write(fecha + "\t Estor vivo PRR\n")
+	carnes.file_itsalive.write(fecha + "\t Raspberry Encendida\n")
 	carnes.closeFiles()
 	itsaliveFlag = False
 	
