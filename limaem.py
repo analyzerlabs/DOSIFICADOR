@@ -63,7 +63,7 @@ class LimaEM:
 		for i in range(0,14):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+i)
-		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+11)	
+		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+10)	
 		self.m.stop()
 		
 	def measureVolume(self,fecha):
@@ -119,11 +119,11 @@ while(condition):
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora  = time.strftime("%H")
 	minuto = time.strftime("%M")
-	if(int(hora)%4 == 1 and int(minuto) == 37):
+	if(int(hora)%4 == 1 and int(minuto) == 42):
 		condition = False
 
 
-if(int(hora)%4 == 1 and int(minuto) == 37):
+if(int(hora)%4 == 1 and int(minuto) == 42):
 	carnes.openFiles()
 	print("\t--------------------------------- ")
 	print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
