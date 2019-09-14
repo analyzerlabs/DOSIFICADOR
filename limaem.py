@@ -119,11 +119,11 @@ while(condition):
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora  = time.strftime("%H")
 	minuto = time.strftime("%M")
-	if(int(hora)%4 == 1 and int(minuto) == 57	):
+	if(int(hora)%4 == 2 and int(minuto) == 1	):
 		condition = False
 
 
-if(int(hora)%4 == 1 and int(minuto) == 57):
+if(int(hora)%4 == 2 and int(minuto) == 1):
 	carnes.openFiles()
 	print("\t--------------------------------- ")
 	print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
