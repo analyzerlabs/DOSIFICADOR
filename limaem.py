@@ -9,7 +9,7 @@ class LimaEM:
 	Serie = 1
 	volumen = [666,276,555,555,222,0,555,222,0,0,0,0]
 	error = [-5,25,-4,10,19,0,0,0,0,0,0,0]
-	min_angle = [-5,25,5,10,19,0,0,0,0,0,0,0]
+	min_angle = [-5,25,6,10,19,0,0,0,0,0,0,0]
 	max_angle = [-5,25,18,10,19,0,0,0,0,0,0,0]
 	v = 0
 	cont = 0
@@ -55,15 +55,15 @@ class LimaEM:
 		print self.cont
 
 	def openValve(self):
-		for i in range(0,13):
+		for i in range(0,12):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.max_angle[self.Serie-1]-i)
 
 	def closeValve(self):
-		for i in range(0,13):
+		for i in range(0,12):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+i)
-		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+12)	
+		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+11)	
 		self.m.stop()
 		
 	def measureVolume(self,fecha):
@@ -119,11 +119,11 @@ while(condition):
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora  = time.strftime("%H")
 	minuto = time.strftime("%M")
-	if(int(hora)%4 == 1 and int(minuto) == 21):
+	if(int(hora)%4 == 1 and int(minuto) == 24):
 		condition = False
 
 
-if(int(hora)%4 == 1 and int(minuto) == 21):
+if(int(hora)%4 == 1 and int(minuto) == 24):
 	carnes.openFiles()
 	print("\t--------------------------------- ")
 	print("\t===== EJECUTANDO NUEVA DOSIS ==== ")
