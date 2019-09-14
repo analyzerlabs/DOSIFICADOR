@@ -9,6 +9,8 @@ class LimaEM:
 	Serie = 1
 	volumen = [666,276,555,555,222,0,555,222,0,0,0,0]
 	error = [-5,25,-4,10,19,0,0,0,0,0,0,0]
+	min_angle = [-5,25,5,10,19,0,0,0,0,0,0,0]
+	max_angle = [-5,25,18,10,19,0,0,0,0,0,0,0]
 	v = 0
 	cont = 0
 	ant_cont = 0
@@ -28,9 +30,7 @@ class LimaEM:
 		GPIO.setup(4, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(17, GPIO.OUT)  # set a port/pin as an input
 		self.m = GPIO.PWM(10,100)
-		self.min_angle = 3
-		self.max_angle = 15
-		self.m.start(self.max_angle)
+		self.m.start(self.max_angle[self.Serie-1])
 		self.openFiles()
 		GPIO.output(4,GPIO.HIGH)
 		GPIO.output(17,GPIO.HIGH)
@@ -54,12 +54,12 @@ class LimaEM:
 	def openValve(self):
 		for i in range(0,12):
 			time.sleep(0.05)
-			self.m.ChangeDutyCycle(self.max_angle-i)
+			self.m.ChangeDutyCycle(self.max_angle[self.Serie-1]-i)
 
 	def closeValve(self):
 		for i in range(0,12):
 			time.sleep(0.05)
-			self.m.ChangeDutyCycle(self.min_angle+i)
+			self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+i)
 		
 		
 	def measureVolume(self,fecha):
