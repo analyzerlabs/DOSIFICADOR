@@ -16,7 +16,11 @@ class LimaEM:
 	ant_cont = 0
 	esperaNuevaLectura = 0
 	def __init__(self,serie):
-		self.Serie = serie
+		self.openFiles()
+		self.Serie = self.file_id.readlines()
+		print "*************************"
+		print self.Serie
+		print "*************************"
 		self.v = int(self.volumen[self.Serie-1] / 2.5) - self.error[self.Serie-1] 
 		print ("El volumen a medir sera de : " + str(self.volumen[self.Serie-1]) + " mL")
 		time.sleep(3)
@@ -36,6 +40,7 @@ class LimaEM:
 		GPIO.output(17,GPIO.HIGH)
 		
 	def openFiles(self):
+		self.file_id = open("/home/pi/id.txt","r")
 		self.file_intento = open("intento1.txt","a")
 		self.file_dosis = open("dosis1.txt","a")
 		self.file_error = open("error1.txt","a")
@@ -125,7 +130,6 @@ if(int(hora)%1 == 0 and int(minuto)%1 ==0):
 	print("\t===== FECHA : " + fecha) 
 	carnes.openValve()
 	vol = carnes.measureVolume(fecha)
-	
 	carnes.closeFiles()
 	time.sleep(60)
 if(int(minuto)%5==0 and itsaliveFlag == True):
