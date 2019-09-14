@@ -14,7 +14,7 @@ do
 	sleep 1
 done
 
-if [ -f ~/limaem.py]
+if [ -f ~/limaem.py ]
 then
 	echo "the file exist"
 else 
