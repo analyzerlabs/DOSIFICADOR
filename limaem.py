@@ -18,9 +18,7 @@ class LimaEM:
 	def __init__(self,serie):
 		self.openFiles()
 		self.Serie = self.file_id.readlines()
-		print "*************************"
-		print self.Serie
-		print "*************************"
+	 	self.Serie = int(self.Serie[0])
 		self.v = int(self.volumen[self.Serie-1] / 2.5) - self.error[self.Serie-1] 
 		print ("El volumen a medir sera de : " + str(self.volumen[self.Serie-1]) + " mL")
 		time.sleep(3)
