@@ -6,6 +6,7 @@ import SDL_DS1307
 
 class LimaEM:
 	Serie = 1
+	nombre = ["PN-C-01","PN-RM-02"]
 	volumen = [666,276,555,555,222,0,555,222,0,0,0,0]
 	error = [-5,25,-4,10,19,0,0,0,0,0,0,0]
 	min_angle = [-5,5,3,10,19,0,0,0,0,0,0,0]
@@ -111,14 +112,15 @@ minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 itsaliveFlag = False
 condition = True
-
+signal = 1
 while(condition):
-	print "wait"
-	time.sleep(2)
+	signal = 1 - signal
+	carnes.blinkLed(4,signal)
+	time.sleep(1)
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S") 
 	hora  = time.strftime("%H")
 	minuto = time.strftime("%M")
-	if(int(hora)%4 == 2 and int(minuto) == 10):
+	if(int(hora)%4 == 0 and int(minuto) == 10):
 		condition = False
 
 
