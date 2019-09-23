@@ -1,17 +1,16 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
-import curses
 import time
 import datetime
 import SDL_DS1307
 
 class LimaEM:
 	Serie = 1
-	nombre = ["PN-C-01","PN-RM-02"]
-	volumen = [666,276,555,555,222,0,555,222,0,0,0,0]
+	nombre = ["PN-RM-01","PN-CA-02","","","","","","","",""]
+	volumen = [666,275,555,555,222,0,555,222,0,0,0,0]
 	error = [-5,25,-4,10,19,0,0,0,0,0,0,0]
-	min_angle = [-5,5,3,10,19,0,0,0,0,0,0,0]
-	max_angle = [-5,15,17,10,19,0,0,0,0,0,0,0]
+	min_angle = [-5,10,3,10,19,0,0,0,0,0,0,0]
+	max_angle = [-5,20,17,10,19,0,0,0,0,0,0,0]
 	v = 0
 	cont = 0
 	ant_cont = 0
@@ -106,7 +105,7 @@ class LimaEM:
 	def printCount(self):
 		print self.cont
 
-stdscr = curses.initscr()	
+
 carnes = LimaEM(1)
 hora = time.strftime("%H")
 minuto = time.strftime("%M")
@@ -136,6 +135,7 @@ if(int(hora)%4 == 2 and int(minuto) == 10):
 	carnes.closeFiles()
 	GPIO.setup(10,GPIO.IN)
 	GPIO.cleanup()
+	
 if(int(minuto)%5 == 0 and itsaliveFlag == True):
 	print("saving its alive")
 	carnes.openFiles()
@@ -145,5 +145,5 @@ if(int(minuto)%5 == 0 and itsaliveFlag == True):
 	
 if(int(minuto)%5 == 1 and itsaliveFlag == False):
 	itsaliveFlag = True
-	
+
 curses.endwin()
