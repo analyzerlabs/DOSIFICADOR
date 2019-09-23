@@ -5,7 +5,7 @@ import datetime
 
 def openFiles():
     file_localRev = open("/home/pi/localRev.txt","w")
-    fecha = now.strftime("%m/%d/%Y, %H:%M:%S")
+    fecha = time.strftime("%m/%d/%Y, %H:%M:%S")
     file_lastRev.write(fecha)
     print "Inicio de nueva revision "
     print (fecha)
