@@ -128,8 +128,11 @@ class LimaEM:
 	def printCount(self):
 		print self.cont
 
-
+	def printRevision(self):
+		print self.last_check
 carnes = LimaEM(1)
+carnes.printRevision()
+
 hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
