@@ -119,7 +119,7 @@ condition = True
 signal = 1
 while(condition):
 	signal = 1 - signal
-	carnes.blinkLed(carnes.blue_led[self.Serie-1],signal)
+	carnes.blinkLed(carnes.blue_led[carnes.Serie-1],signal)
 	time.sleep(1)
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S")
 	hora  = time.strftime("%H")
