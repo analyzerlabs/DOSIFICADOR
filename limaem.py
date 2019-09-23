@@ -32,13 +32,13 @@ class LimaEM:
 		GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(2, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(3, GPIO.OUT)  # set a port/pin as an input
-		GPIO.setup(green_led[self.Serie-1], GPIO.OUT)  # set a port/pin as an input
-		GPIO.setup(blue_led[self.Serie-1], GPIO.OUT)  # set a port/pin as an input
+		GPIO.setup(self.green_led[self.Serie-1], GPIO.OUT)  # set a port/pin as an input
+		GPIO.setup(self.blue_led[self.Serie-1], GPIO.OUT)  # set a port/pin as an input
 		self.m = GPIO.PWM(10,100)
 		self.m.start(self.max_angle[self.Serie-1])
 		self.openFiles()
-		GPIO.output(green_led[self.Serie-1],GPIO.HIGH)
-		GPIO.output(blue_led[self.Serie-1],GPIO.HIGH)
+		GPIO.output(self.green_led[self.Serie-1],GPIO.HIGH)
+		GPIO.output(self.blue_led[self.Serie-1],GPIO.HIGH)
 		time.sleep(2)
 
 	def openFiles(self):
@@ -59,12 +59,12 @@ class LimaEM:
 		print self.cont
 
 	def openValve(self):
-		for i in range(0,delta_angle[self.Serie-1]):
+		for i in range(0,self.delta_angle[self.Serie-1]):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.max_angle[self.Serie-1]-i)
 
 	def closeValve(self):
-		for i in range(0,delta_angle[self.Serie-1]):
+		for i in range(0,self.delta_angle[self.Serie-1]):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+i)
 		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+13)
