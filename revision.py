@@ -10,7 +10,6 @@ def openFiles():
     print "Inicio de nueva revision "
     print (fecha)
     return 0
-
-
+    
 openFiles()
 
