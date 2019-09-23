@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
+import curses
 import time
 import datetime
 import SDL_DS1307
@@ -105,7 +106,7 @@ class LimaEM:
 	def printCount(self):
 		print self.cont
 
-				
+stdscr = curses.initscr()	
 carnes = LimaEM(1)
 hora = time.strftime("%H")
 minuto = time.strftime("%M")
@@ -145,3 +146,4 @@ if(int(minuto)%5 == 0 and itsaliveFlag == True):
 if(int(minuto)%5 == 1 and itsaliveFlag == False):
 	itsaliveFlag = True
 	
+curses.endwin()
