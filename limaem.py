@@ -7,13 +7,21 @@ import SDL_DS1307
 class LimaEM:
 	Serie = 1
 	nombre = ["PN-RM-01","PN-CA-02","","","","","","","",""]
-	volumen     = [666,275,555,555,222,0  ,555,222,0  ,0  ,0  ,0  ]
-	error       = [-5 ,25 ,-4 ,10 ,19 ,0  ,0  ,0  ,0  ,0  ,0  ,0  ]
-	min_angle   = [-5 ,10 ,3  ,10 ,19 ,0  ,0  ,0  ,0  ,0  ,0  ,0  ]
-	max_angle   = [-5 ,20 ,17 ,10 ,19 ,0  ,0  ,0  ,0  ,0  ,0  ,0  ]
-	delta_angle = [14 ,10 ,13 ,12 ,12 ,12 ,12 ,12 ,12 ,12 ,12 ,12 ]
-	green_led   = [17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ]
-	blue_led    = [ 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 ]
+	volumen     = [ 666, 275, 555, 555, 222, 0  , 555, 222, 0  , 0  , 0  , 0  ]
+	error       = [ -5 , 25 , -4 , 10 , 19 , 0  , 0  , 0  , 0  , 0  , 0  , 0  ]
+	min_angle   = [ -5 , 10 , 3  , 10 , 19 , 0  , 0  , 0  , 0  , 0  , 0  , 0  ]
+	max_angle   = [ -5 , 20 , 17 , 10 , 19 , 0  , 0  , 0  , 0  , 0  , 0  , 0  ]
+	delta_angle = [ 14 , 10 , 13 , 12 , 12 , 12 , 12 , 12 , 12 , 12 , 12 , 12 ]
+	green_led   = [ 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 ]
+	blue_led    = [  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ]
+	state       = ["404","401","402","402","402","402","402","402","402","402","402","402"]
+	last_update = [     ,     ,     ,    ,    ,    ,    ,    ,    ,    ,    ,    ]   
+	last_check  = [     ,     ,     ,    ,    ,    ,    ,    ,    ,    ,    ,    ]
+	# 405 = no operativo
+	# 401 = actualizado, sin errores y ejecutando 
+	# 402 = no actualizado,sin errores y ejecutando
+	# 403 = actualizado , algun error y ejecutando
+    # 404 = no actualizado , algun error y ejecutando
 	v = 0
 	cont = 0
 	ant_cont = 0
@@ -23,6 +31,10 @@ class LimaEM:
 		self.Serie = self.file_id.readlines()
 	 	self.Serie = int(self.Serie[0])
 		self.v = int(self.volumen[self.Serie-1] / 2.5) - self.error[self.Serie-1]
+		self.last_check[self.Serie-1] = self.file_lastRev.readlines()
+		#self.last_check[self.Serie-1] = self.file_lastRev.readlines()
+		print ("ultima revision :  ")
+		print (self.last_check[self.Serie-1])
 		print ("El volumen a medir sera de : " + str(self.volumen[self.Serie-1]) + " mL")
 		time.sleep(3)
 		GPIO.setmode(GPIO.BCM)            # choose BCM or BOARD
@@ -36,12 +48,12 @@ class LimaEM:
 		GPIO.setup(self.blue_led[self.Serie-1], GPIO.OUT)  # set a port/pin as an input
 		self.m = GPIO.PWM(10,100)
 		self.m.start(self.max_angle[self.Serie-1])
-		self.openFiles()
 		GPIO.output(self.green_led[self.Serie-1],GPIO.HIGH)
 		GPIO.output(self.blue_led[self.Serie-1],GPIO.HIGH)
 		time.sleep(2)
 
 	def openFiles(self):
+		self.file_localRev = open("/home/pi/localRev.txt","r")
 		self.file_id = open("/home/pi/id.txt","r")
 		self.file_intento = open("/home/pi/intento.txt","a")
 		self.file_dosis = open("/home/pi/dosis.txt","a")
