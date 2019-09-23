@@ -7,10 +7,13 @@ import SDL_DS1307
 class LimaEM:
 	Serie = 1
 	nombre = ["PN-RM-01","PN-CA-02","","","","","","","",""]
-	volumen = [666,275,555,555,222,0,555,222,0,0,0,0]
-	error = [-5,25,-4,10,19,0,0,0,0,0,0,0]
-	min_angle = [-5,10,3,10,19,0,0,0,0,0,0,0]
-	max_angle = [-5,20,17,10,19,0,0,0,0,0,0,0]
+	volumen     = [666,275,555,555,222,0  ,555,222,0  ,0  ,0  ,0  ]
+	error       = [-5 ,25 ,-4 ,10 ,19 ,0  ,0  ,0  ,0  ,0  ,0  ,0  ]
+	min_angle   = [-5 ,10 ,3  ,10 ,19 ,0  ,0  ,0  ,0  ,0  ,0  ,0  ]
+	max_angle   = [-5 ,20 ,17 ,10 ,19 ,0  ,0  ,0  ,0  ,0  ,0  ,0  ]
+	delta_angle = [14 ,10 ,13 ,12 ,12 ,12 ,12 ,12 ,12 ,12 ,12 ,12 ]
+	green_led   = [17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ,17 ]
+	blue_led    = [ 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 , 4 ]
 	v = 0
 	cont = 0
 	ant_cont = 0
@@ -29,13 +32,14 @@ class LimaEM:
 		GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(2, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(3, GPIO.OUT)  # set a port/pin as an input
-		GPIO.setup(4, GPIO.OUT)  # set a port/pin as an input
-		GPIO.setup(17, GPIO.OUT)  # set a port/pin as an input
+		GPIO.setup(green_led[self.Serie-1], GPIO.OUT)  # set a port/pin as an input
+		GPIO.setup(blue_led[self.Serie-1], GPIO.OUT)  # set a port/pin as an input
 		self.m = GPIO.PWM(10,100)
 		self.m.start(self.max_angle[self.Serie-1])
 		self.openFiles()
-		GPIO.output(4,GPIO.HIGH)
-		GPIO.output(17,GPIO.HIGH)
+		GPIO.output(green_led[self.Serie-1],GPIO.HIGH)
+		GPIO.output(blue_led[self.Serie-1],GPIO.HIGH)
+		time.sleep(2)
 
 	def openFiles(self):
 		self.file_id = open("/home/pi/id.txt","r")
@@ -55,12 +59,12 @@ class LimaEM:
 		print self.cont
 
 	def openValve(self):
-		for i in range(0,14):
+		for i in range(0,delta_angle[self.Serie-1]):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.max_angle[self.Serie-1]-i)
 
 	def closeValve(self):
-		for i in range(0,14):
+		for i in range(0,delta_angle[self.Serie-1]):
 			time.sleep(0.05)
 			self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+i)
 		self.m.ChangeDutyCycle(self.min_angle[self.Serie-1]+13)
@@ -115,7 +119,7 @@ condition = True
 signal = 1
 while(condition):
 	signal = 1 - signal
-	carnes.blinkLed(4,signal)
+	carnes.blinkLed(carnes.blue_led[self.Serie-1],signal)
 	time.sleep(1)
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S")
 	hora  = time.strftime("%H")
