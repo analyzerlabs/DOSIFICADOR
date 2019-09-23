@@ -4,7 +4,7 @@ import time
 import datetime
 
 def openFiles():
-    file_localRev = open("/home/pi/localRev.txt","w")
+    file_lastRev = open("/home/pi/lastRev.txt","w")
     fecha = time.strftime("%m/%d/%Y, %H:%M:%S")
     file_lastRev.write(fecha)
     print "Inicio de nueva revision "
@@ -12,5 +12,5 @@ def openFiles():
     return 0
 
 
-openfiles()
+openFiles()
 
