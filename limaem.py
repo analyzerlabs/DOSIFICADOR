@@ -60,7 +60,7 @@ class LimaEM:
 		time.sleep(2)
 
 	def openFiles(self):
-		self.file_localRev = open("/home/pi/localRev.txt","r")
+		self.file_lastRev = open("/home/pi/lastRev.txt","r")
 		self.file_id = open("/home/pi/id.txt","r")
 		self.file_intento = open("/home/pi/intento.txt","a")
 		self.file_dosis = open("/home/pi/dosis.txt","a")
