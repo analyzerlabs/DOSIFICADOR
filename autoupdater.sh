@@ -5,6 +5,7 @@ while true;do
     echo "==============================="
     echo "========  ACTUALIZANDO  ======="
     echo "==============================="
+    sudo cp /home/pi/DOSIFICADOR/revision.py /home/pi/revision
     sudo git reset --hard
     sudo git pull
     echo "==============================="
