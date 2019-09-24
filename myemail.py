@@ -19,7 +19,7 @@ for row in readCSV:
 sent_from = gmail_user
 to = ['fisicomiguel@gmail.com', 'renato.montenegro.ayo@gmail.com']
 subject = 'Dosificador '
-body = "Envio de actualizacion de datos para el equipo ubicado en" + str(ubicacion[Serie]) +" "str(seccion[Serie])+  
+body = "Envio de actualizacion de datos para el equipo ubicado en" + str(ubicacion[Serie]) +" "+str(seccion[Serie])+  
         "\n\n- ATENCION"
 
 email_text = """\
