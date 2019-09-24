@@ -1,12 +1,26 @@
 import smtplib
+import csv
+import time
 
-gmail_user = 'fisicomiguel@gmail.com'
-gmail_password = 'Fisico_de_la_uni_1'
+gmail_user = 'dosificadorlimaem@gmail.com'
+gmail_password = 'LimaEM_dosificador'
+
+file_id= open("/home/pi/file_id.txt","r")
+Serie = file_id.readlines()
+Serie = int(self.Serie[0])	
+ubicacion = []
+seccion = []
+csvfile = open('data.csv')
+readCSV = csv.reader(csvfile,delimiter=';')
+	for row in readCSV:
+        ubicacion = row[1] 
+        seccion = row[2]
 
 sent_from = gmail_user
-to = ['fisicomiguel@gmail.com', 'miguelquispecastro@uni.pe']
-subject = 'OMG Super Important Message'
-body = 'Hey, whats up? \n\n- You'
+to = ['fisicomiguel@gmail.com', 'renato.montenegro.ayo@gmail.com']
+subject = 'Dosificador '
+body = "Envio de actualizacion de datos para el equipo ubicado en" + str(ubicacion[Serie]) +" "str(seccion[Serie])+  
+        "\n\n- ATENCION"
 
 email_text = """\
 From: %s
