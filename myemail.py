@@ -1,9 +1,10 @@
 import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 import csv
 import time
-
-gmail_user = 'dosificadorlimaem@gmail.com'
-gmail_password = 'LimaEM_dosificador'
 
 file_id= open("/home/pi/file_id.txt","r")
 Serie = file_id.readlines()
@@ -16,27 +17,36 @@ for row in readCSV:
         ubicacion = row[1] 
         seccion = row[2]
 
-sent_from = gmail_user
-to = ['fisicomiguel@gmail.com', 'renato.montenegro.ayo@gmail.com']
-subject = 'Dosificador '
-body = "Envio de actualizacion de datos para el equipo ubicado en" + str(ubicacion[Serie]) +" "+str(seccion[Serie])+  
-        "\n\n- ATENCION"
+email_user = 'dosificadorlimaem@gmail.com'
+email_password = 'LimaEM_dosificador'
+email_send = ['fisicomiguel@gmail.com', 'renato.montenegro.ayo@gmail.com']
 
-email_text = """\
-From: %s
-To: %s
-Subject: %s
+subject = 'Dosificador' str(ubicacion[Serie]) +" "+str(seccion[Serie])
 
-%s
-""" % (sent_from, ", ".join(to), subject, body)
+msg = MIMEMultipart()
+msg['From'] = email_user
+msg['To'] = email_send
+msg['Subject'] = subject
 
+body = 'Hi there, sending this email from Python!'
+msg.attach(MIMEText(body,'plain'))
+
+filename='data.csv'
+attachment  = open(filename,'rb')
+
+part = MIMEBase('application','octet-stream')
+part.set_payload((attachment).read())
+encoders.encode_base64(part)
+part.add_header('Content-Disposition',"attachment; filename= "+filename)
+
+msg.attach(part)
+text = msg.as_string()
 try:
-    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-    server.ehlo()
-    server.login(gmail_user, gmail_password)
-    server.sendmail(sent_from, to, email_text)
-    server.close()
-
-    print 'Email sent!'
+        server = smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
+        server.login(email_user,email_password)
+        server.sendmail(email_user,email_send,text)
+        server.quit()
+        print 'Email sent!'
 except:
-    print 'Something went wrong...'
+        print 'Something went wrong...'
