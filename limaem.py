@@ -142,7 +142,7 @@ class LimaEM:
 		print (self.cont)
 
 	def printRevision(self):
-		print ("----> ultima revision:  " + str(int(self.last_check[self.Serie])))
+		print ("----> ultima revision:  " + str(self.last_check[self.Serie]))
 
 dosificador = LimaEM(1)
 dosificador.printRevision()
