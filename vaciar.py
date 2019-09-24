@@ -110,10 +110,12 @@ def calcSeconds(t):
 	else:
 		y = time.strftime("%S")
 		
-carnes = LimaEM(1)
+dosificador = LimaEM(1)
 hora = time.strftime("%H")
 minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 while True:
-  carnes.openValve()
+	dosificador.openValve()
+	time.sleep(200)
+	dosificador.closeValve()
 	

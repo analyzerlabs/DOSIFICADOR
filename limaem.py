@@ -2,7 +2,6 @@
 import RPi.GPIO as GPIO
 import time
 import datetime
-import SDL_DS1307
 
 class LimaEM:
 	Serie = 1
@@ -15,6 +14,11 @@ class LimaEM:
 	green_led   = [ 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 , 17 ]
 	blue_led    = [  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ,  4 ]
 	state       = ["404","401","402","402","402","402","402","402","402","402","402","402"]
+	dosiss_time = [ "12/24/2018, 04:59:31"  , "12/24/2018, 04:59:31"    , "12/24/2018, 04:59:31"    ,
+	                "12/24/2018, 04:59:31"  , "12/24/2018, 04:59:31"    , "12/24/2018, 04:59:31"    ,
+					"12/24/2018, 04:59:31"  , "12/24/2018, 04:59:31"    , "12/24/2018, 04:59:31"    ,
+					"12/24/2018, 04:59:31"  , "12/24/2018, 04:59:31"    , "12/24/2018, 04:59:31"    ]
+				  ]
 	last_update = [ "12/24/2018, 04:59:31"  , "12/24/2018, 04:59:31"    , "12/24/2018, 04:59:31"    ,
 	                "12/24/2018, 04:59:31"  , "12/24/2018, 04:59:31"    , "12/24/2018, 04:59:31"    ,
 					"12/24/2018, 04:59:31"  , "12/24/2018, 04:59:31"    , "12/24/2018, 04:59:31"    ,
@@ -75,7 +79,7 @@ class LimaEM:
 
 	def counter(self,pin):
 		self.cont += 1
-		print self.cont
+		print (self.cont)
 
 	def openValve(self):
 		for i in range(0,self.delta_angle[self.Serie-1]):
@@ -126,7 +130,7 @@ class LimaEM:
 		GPIO.output(pin,state)
 
 	def printCount(self):
-		print self.cont
+		print (self.cont)
 
 	def printRevision(self):
 		print ("----> ultima revision:  " + str(self.last_check[self.Serie-1]))
