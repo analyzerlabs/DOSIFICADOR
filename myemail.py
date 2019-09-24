@@ -12,7 +12,7 @@ ubicacion = []
 seccion = []
 csvfile = open('data.csv')
 readCSV = csv.reader(csvfile,delimiter=';')
-	for row in readCSV:
+for row in readCSV:
         ubicacion = row[1] 
         seccion = row[2]
 
