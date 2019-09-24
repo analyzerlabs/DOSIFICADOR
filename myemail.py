@@ -6,7 +6,7 @@ from email import encoders
 import csv
 import time
 
-file_id= open("/home/pi/file_id.txt","r")
+file_id= open("/home/pi/id.txt","r")
 Serie = file_id.readlines()
 Serie = int(self.Serie[0])	
 ubicacion = []
