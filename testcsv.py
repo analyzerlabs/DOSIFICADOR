@@ -1,9 +1,13 @@
 import csv
 
-with open('./data.csv', 'r') as _filehandler:
-    csv_file_reader = csv.DictReader(_filehandler,delimiter=';',quotechar='|')
+with open('data.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    usrid = []
+    price = []
+    product = []
+    for row in readCSV:
+        usrid.append(row[0])
+        price.append(row[1])
+        product.append(row[2])
 
-    for row in csv_file_reader:
-        # Do something here
-        print(row['id'])
-        print(row['ubicacion'])
+    print usrid
