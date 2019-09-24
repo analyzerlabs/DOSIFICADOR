@@ -1,6 +1,6 @@
 import smtplib
-from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 import csv
@@ -17,36 +17,38 @@ for row in readCSV:
         ubicacion.append(row[1]) 
         seccion.append(row[2])
 
-email_user = 'dosificadorlimaem@gmail.com'
-email_password = 'LimaEM_dosificador'
-email_send = ['fisicomiguel@gmail.com', 'renato.montenegro.ayo@gmail.com']
 
-subject = 'Dosificador'+ ubicacion[Serie] +" "+seccion[Serie]
-
-msg = MIMEMultipart()
-msg['From'] = email_user
-msg['To'] = email_send
-msg['Subject'] = subject
-
-body = 'Hi there, sending this email from Python!'
-msg.attach(MIMEText(body,'plain'))
-
-filename='data.csv'
-attachment  = open(filename,'rb')
-
-part = MIMEBase('application','octet-stream')
-part.set_payload((attachment).read())
-encoders.encode_base64(part)
-part.add_header('Content-Disposition',"attachment; filename= "+filename)
-
-msg.attach(part)
-text = msg.as_string()
-try:
-        server = smtplib.SMTP('smtp.gmail.com',587)
-        server.starttls()
-        server.login(email_user,email_password)
-        server.sendmail(email_user,email_send,text)
-        server.quit()
-        print 'Email sent!'
-except:
-        print 'Something went wrong...'
+mail_content = '''Hello,
+This is a test mail.
+In this mail we are sending some attachments.
+The mail is sent using Python SMTP library.
+Thank You
+'''
+#The mail addresses and password
+sender_address = 'dosificadorlimaem@gmail.com'
+sender_pass = 'LimaEM_dosificador'
+receiver_address = 'fisicomiguel        @gmail.com'
+#Setup the MIME
+message = MIMEMultipart()
+message['From'] = sender_address
+message['To'] = receiver_address
+message['Subject'] = 'A test mail sent by Python. It has an attachment.'
+#The subject line
+#The body and the attachments for the mail
+message.attach(MIMEText(mail_content, 'plain'))
+attach_file_name = 'dosis1.txt'
+attach_file = open(attach_file_name, 'rb') # Open the file as binary mode
+payload = MIMEBase('application', 'octate-stream')
+payload.set_payload((attach_file).read())
+encoders.encode_base64(payload) #encode the attachment
+#add payload header with filename
+payload.add_header('Content-Decomposition', 'attachment', filename=attach_file_name)
+message.attach(payload)
+#Create SMTP session for sending the mail
+session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+session.starttls() #enable security
+session.login(sender_address, sender_pass) #login with mail_id and password
+text = message.as_string()
+session.sendmail(sender_address, receiver_address, text)
+session.quit()
+print('Mail Sent')
