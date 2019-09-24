@@ -21,7 +21,7 @@ email_user = 'dosificadorlimaem@gmail.com'
 email_password = 'LimaEM_dosificador'
 email_send = ['fisicomiguel@gmail.com', 'renato.montenegro.ayo@gmail.com']
 
-subject = 'Dosificador' str(ubicacion[Serie]) +" "+str(seccion[Serie])
+subject = 'Dosificador'+ str(ubicacion[Serie]) +" "+str(seccion[Serie])
 
 msg = MIMEMultipart()
 msg['From'] = email_user
