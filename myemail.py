@@ -14,14 +14,14 @@ seccion = []
 csvfile = open('data.csv')
 readCSV = csv.reader(csvfile,delimiter=';')
 for row in readCSV:
-        ubicacion = row[1] 
-        seccion = row[2]
+        ubicacion.append(row[1]) 
+        seccion.append(row[2])
 
 email_user = 'dosificadorlimaem@gmail.com'
 email_password = 'LimaEM_dosificador'
 email_send = ['fisicomiguel@gmail.com', 'renato.montenegro.ayo@gmail.com']
 
-subject = 'Dosificador'+ str(ubicacion[Serie]) +" "+str(seccion[Serie])
+subject = 'Dosificador'+ ubicacion[Serie] +" "+seccion[Serie]
 
 msg = MIMEMultipart()
 msg['From'] = email_user
