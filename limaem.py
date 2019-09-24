@@ -37,7 +37,8 @@ class LimaEM:
 		csvfile = open('data.csv')
 		readCSV = csv.reader(csvfile,delimiter=';')
 		for row in readCSV:
-    		self.vol_dosis.append(row[3])
+    		
+			self.vol_dosis.append(row[3])
 			self.init_dosis.append(row[4])
 			self.min_angle.append(row[6])
 			self.max_angle.append(row[7])
@@ -46,6 +47,8 @@ class LimaEM:
 			self.last_check.append(row[12])
 			self.last_update.append(row[10])
 			self.last_dosis.append(row[11])
+			self.green_led.append(row[14])
+			self.blue_led.append(row[15])
 
 		self.v = int(int(self.vol_dosis[self.Serie]) / 2.5) - int(self.error_vol[self.Serie])
 		self.last_check[self.Serie] = self.file_lastRev.readlines()
