@@ -8,7 +8,7 @@ import time
 
 file_id= open("/home/pi/id.txt","r")
 Serie = file_id.readlines()
-Serie = int(self.Serie[0])	
+Serie = int(Serie[0])	
 ubicacion = []
 seccion = []
 csvfile = open('data.csv')
