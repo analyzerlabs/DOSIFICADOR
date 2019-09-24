@@ -1,7 +1,7 @@
 import csv
 
 with open('data.csv') as csvfile:
-    readCSV = csv.reader(csvfile, delimiter=',')
+    readCSV = csv.reader(csvfile, delimiter=';')
     usrid = []
     price = []
     product = []
