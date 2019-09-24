@@ -64,7 +64,7 @@ class LimaEM:
 		GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(2, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(3, GPIO.OUT)  # set a port/pin as an input
-		GPIO.setup(int(self.green_led[self.Serie]), GPIO.OUT)  # set a port/pin as an input
+		GPIO.setup(self.green_led[self.Serie], GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(int(self.blue_led[self.Serie]), GPIO.OUT)  # set a port/pin as an input
 		self.m = GPIO.PWM(10,100)
 		self.m.start(int(self.max_angle[self.Serie]))
