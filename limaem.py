@@ -29,12 +29,11 @@ class LimaEM:
 	cont = 0
 	ant_cont = 0
 	esperaNuevaLectura = 0
+
 	def __init__(self,serie):	
 		self.openFiles()
 		self.Serie = self.file_id.readlines()
 	 	self.Serie = int(self.Serie[0])
-		
-
 		csvfile = open('data.csv')
 		readCSV = csv.reader(csvfile,delimiter=';')
 		for row in readCSV:
@@ -48,7 +47,7 @@ class LimaEM:
 			self.last_update.append(row[10])
 			self.last_dosis.append(row[11])
 
-		self.v = int(self.vol_dosis[self.Serie] / 2.5) - self.error_vol[self.Serie]
+		self.v = int(int(self.vol_dosis[self.Serie]) / 2.5) - int(self.error_vol[self.Serie])
 		self.last_check[self.Serie] = self.file_lastRev.readlines()
 		#self.last_check[self.Serie-1] = self.file_lastRev.readlines()
 		print ("ultima revision :  ")
@@ -62,12 +61,12 @@ class LimaEM:
 		GPIO.setup(10, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(2, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(3, GPIO.OUT)  # set a port/pin as an input
-		GPIO.setup(self.green_led[self.Serie], GPIO.OUT)  # set a port/pin as an input
-		GPIO.setup(self.blue_led[self.Serie], GPIO.OUT)  # set a port/pin as an input
+		GPIO.setup(int(self.green_led[self.Serie]), GPIO.OUT)  # set a port/pin as an input
+		GPIO.setup(int(self.blue_led[self.Serie]), GPIO.OUT)  # set a port/pin as an input
 		self.m = GPIO.PWM(10,100)
-		self.m.start(self.max_angle[self.Serie])
-		GPIO.output(self.green_led[self.Serie],GPIO.HIGH)
-		GPIO.output(self.blue_led[self.Serie],GPIO.HIGH)
+		self.m.start(int(self.max_angle[self.Serie]))
+		GPIO.output(int(self.green_led[self.Serie]),GPIO.HIGH)
+		GPIO.output(int(self.blue_led[self.Serie]),GPIO.HIGH)
 		time.sleep(2)
 
 	def openFiles(self):
@@ -89,15 +88,15 @@ class LimaEM:
 		print (self.cont)
 
 	def openValve(self):
-		for i in range(0,self.delta_angle[self.Serie]):
+		for i in range(0,int(self.delta_angle[self.Serie])):
 			time.sleep(0.05)
-			self.m.ChangeDutyCycle(self.max_angle[self.Serie]-i)
+			self.m.ChangeDutyCycle(int(self.max_angle[self.Serie])-i)
 
 	def closeValve(self):
-		for i in range(0,self.delta_angle[self.Serie]):
+		for i in range(0,int(self.delta_angle[self.Serie])):
 			time.sleep(0.05)
-			self.m.ChangeDutyCycle(self.min_angle[self.Serie]+i)
-		self.m.ChangeDutyCycle(self.min_angle[self.Serie]+self.delta_angle[self.Serie]+1)
+			self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+i)
+		self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+int(self.delta_angle[self.Serie])+1)
 		self.m.stop()
 
 	def measureVolume(self,fecha):
@@ -140,7 +139,7 @@ class LimaEM:
 		print (self.cont)
 
 	def printRevision(self):
-		print ("----> ultima revision:  " + str(self.last_check[self.Serie]))
+		print ("----> ultima revision:  " + str(int(self.last_check[self.Serie])))
 
 dosificador = LimaEM(1)
 dosificador.printRevision()
@@ -153,7 +152,7 @@ condition = True
 signal = 1
 while(condition):
 	signal = 1 - signal
-	dosificador.blinkLed(dosificador.blue_led[dosificador.Serie],signal)
+	dosificador.blinkLed(int(dosificador.blue_led[dosificador.Serie]),signal)
 	time.sleep(1)
 	fecha = time.strftime("%Y-%m-%d %H:%M:%S")
 	hora  = time.strftime("%H")
@@ -169,7 +168,7 @@ if(int(hora)%4 == 3 and int(minuto) == 10):
 	print("\t===== FECHA : " + fecha)
 	dosificador.openValve()
 	vol = dosificador.measureVolume(fecha)
-	dosificador.file_dosis.write("\t"+ fecha + "\t volumen= "+ str(2.5*(vol+dosificador.error[dosificador.Serie])))
+	dosificador.file_dosis.write("\t"+ fecha + "\t volumen= "+ str(2.5*(vol+int(dosificador.error[dosificador.Serie]))))
 	dosificador.closeFiles()
 	GPIO.setup(10,GPIO.IN)
 	GPIO.cleanup()
