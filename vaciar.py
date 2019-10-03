@@ -29,7 +29,7 @@ class LimaEM:
 		GPIO.setup(4, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(17, GPIO.OUT)  # set a port/pin as an input
 #		GPIO.add_event_detect( 20 , GPIO.FALLING  , callback = self.counter)
-		self.m = GPIO.PWM(10,100)
+		self.m = GPIO.PWM(10,50)
 		self.min_angle = 3
 		self.max_angle = 15
 		self.m.start(self.max_angle)
@@ -52,15 +52,15 @@ class LimaEM:
 		print self.cont
 
 	def openValve(self):
-		for i in range(0,12):
-			time.sleep(0.05)
+		for i in range(0,4):
+			time.sleep(0.5)
 			self.m.ChangeDutyCycle(self.max_angle-i)
-
+		self.m.ChangeDutyCycle(self.max_angle-4)
 	def closeValve(self):
-		for i in range(0,12):
-			time.sleep(0.05)
+		for i in range(0,4):
+			time.sleep(0.5)
 			self.m.ChangeDutyCycle(self.min_angle+i)
-		
+		self.m.ChangeDutyCycle(self.min_angle+4)
 		
 	def measureVolume(self,fecha):
 		self.file_dosis.write(fecha + "\t Intento de Dosificacion \n")
@@ -116,6 +116,6 @@ minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 while True:
 	dosificador.openValve()
-	time.sleep(200)
+	time.sleep(15)
 	dosificador.closeValve()
-	
+	time.sleep(15)
