@@ -61,6 +61,7 @@ class LimaEM:
 			time.sleep(0.5)
 			self.m.ChangeDutyCycle(self.min_angle+i)
 		time.sleep(4)
+		
 		self.m.stop()
 	def measureVolume(self,fecha):
 		self.file_dosis.write(fecha + "\t Intento de Dosificacion \n")
