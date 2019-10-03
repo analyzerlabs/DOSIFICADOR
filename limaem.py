@@ -66,7 +66,7 @@ class LimaEM:
 		GPIO.setup(3, GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(int(self.green_led[self.Serie]), GPIO.OUT)  # set a port/pin as an input
 		GPIO.setup(int(self.blue_led[self.Serie]), GPIO.OUT)  # set a port/pin as an input
-		self.m = GPIO.PWM(10,100)
+		self.m = GPIO.PWM(10,50)
 		self.m.start(int(self.max_angle[self.Serie]))
 		GPIO.output(int(self.green_led[self.Serie]),GPIO.HIGH)
 		GPIO.output(int(self.blue_led[self.Serie]),GPIO.HIGH)
@@ -92,12 +92,12 @@ class LimaEM:
 
 	def openValve(self):
 		for i in range(0,int(self.delta_angle[self.Serie])):
-			time.sleep(0.05)
+			time.sleep(0.5)
 			self.m.ChangeDutyCycle(int(self.max_angle[self.Serie])-i)
 
 	def closeValve(self):
 		for i in range(0,int(self.delta_angle[self.Serie])):
-			time.sleep(0.05)
+			time.sleep(0.5)
 			self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+i)
 		self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+int(self.delta_angle[self.Serie])+1)
 		self.m.stop()
