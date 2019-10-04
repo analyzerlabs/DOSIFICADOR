@@ -101,7 +101,6 @@ class LimaEM:
 			self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+i)
 		self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+int(self.delta_angle[self.Serie]))
 		time.sleep(4)
-		
 		self.m.stop()
 
 	def measureVolume(self,fecha):
