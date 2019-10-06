@@ -27,7 +27,7 @@ Thank You
 #The mail addresses and password
 sender_address = 'dosificadorlimaem@gmail.com'
 sender_pass = 'LimaEM_dosificador'
-receiver_address = 'fisicomiguel        @gmail.com'
+receiver_address = 'fisicomiguel@gmail.com'
 #Setup the MIME
 message = MIMEMultipart()
 message['From'] = sender_address
