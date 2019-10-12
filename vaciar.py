@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 import datetime
-import SDL_DS1307
+
 
 
 class LimaEM:
