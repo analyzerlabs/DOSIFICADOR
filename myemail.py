@@ -18,7 +18,10 @@ for row in readCSV:
         seccion.append(row[2])
 
 
-mail_content = '''Hello,
+mail_content = '''
+Email sent from ''' + str(ubicacion) + " " + str(seccion)+'''  \n
+
+Hello,
 This is a test mail.
 In this mail we are sending some attachments.
 The mail is sent using Python SMTP library.
