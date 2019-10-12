@@ -95,12 +95,12 @@ class LimaEM:
 
 	def openValve(self):
     		for i in range(0,int(self.delta_angle[self.Serie])):
-			time.sleep(int(self.delta_t)/1000)
+			time.sleep(float(self.delta_t[self.Serie]))
 			self.m.ChangeDutyCycle(int(self.max_angle[self.Serie])-i)
 
 	def closeValve(self):
 		for i in range(0,int(self.delta_angle[self.Serie])):
-			time.sleep(int(self.delta_t)/1000)
+			time.sleep(float(self.delta_t[self.Serie]))
 			self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+i)
 		time.sleep(4)
 		self.m.stop()
