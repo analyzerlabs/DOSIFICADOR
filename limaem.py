@@ -13,6 +13,7 @@ class LimaEM:
 	min_angle  = []
 	delta_angle= []
 	delta_hora = []
+	delta_t = []
 	last_update= []
 	last_check = []
 	last_dosis = []
@@ -43,12 +44,14 @@ class LimaEM:
 			self.min_angle.append(row[6])
 			self.max_angle.append(row[7])
 			self.delta_angle.append(row[8])
-			self.error_vol.append(row[9])
-			self.last_check.append(row[12])
-			self.last_update.append(row[10])
-			self.last_dosis.append(row[11])
-			self.green_led.append(row[14])
-			self.blue_led.append(row[15])
+			self.delta_t.append(row[9])
+			self.error_vol.append(row[10])
+			self.last_update.append(row[11])
+			self.last_dosis.append(row[12])
+			self.last_check.append(row[13])
+			self.state.append(row[14])
+			self.green_led.append(row[15])
+			self.blue_led.append(row[16])
 
 		self.v = int(int(self.vol_dosis[self.Serie]) / 2.5) - int(self.error_vol[self.Serie])
 		self.last_check[self.Serie] = self.file_lastRev.readlines()
@@ -91,13 +94,13 @@ class LimaEM:
 		print (self.cont)
 
 	def openValve(self):
-		for i in range(0,int(self.delta_angle[self.Serie])):
-			time.sleep(0.5)
+    		for i in range(0,int(self.delta_angle[self.Serie])):
+			time.sleep(float(self.delta_t))
 			self.m.ChangeDutyCycle(int(self.max_angle[self.Serie])-i)
 
 	def closeValve(self):
 		for i in range(0,int(self.delta_angle[self.Serie])):
-			time.sleep(0.5)
+			time.sleep(float(self.delta_t))
 			self.m.ChangeDutyCycle(int(self.min_angle[self.Serie])+i)
 		time.sleep(4)
 		self.m.stop()
