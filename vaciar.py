@@ -7,6 +7,6 @@ minuto = time.strftime("%M")
 last_time = time.strftime("%S")
 while True:
 	dosificador.openValve()
-	time.sleep(15)
+	time.sleep(4)
 	dosificador.closeValve()
-	time.sleep(15)
+	time.sleep(4)
