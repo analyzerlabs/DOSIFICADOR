@@ -28,7 +28,7 @@ if(int(hora)%4 == 3 and int(minuto) == 10):
 	print("\t===== FECHA : " + fecha)
 	dosificador.openValve()
 	vol = dosificador.measureVolume(fecha)
-	dosificador.file_dosis.write("\t"+ fecha + "\t volumen= "+ str(2.5*(vol+int(dosificador.error_vol[dosificador.Serie]))))
+	dosificador.file_dosis.write("\t"+ fecha + "\t volumen= "+ str(2.5*(vol+int(dosificador.error_vol[dosificador.Serie])))+"\n")
 	dosificador.closeFiles()
 	GPIO.setup(10,GPIO.IN)
 	GPIO.cleanup()
