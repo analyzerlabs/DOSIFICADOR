@@ -5,7 +5,7 @@ while true;do
     end=`date +%s`
     runtime=$((end-start))
     echo $runtime
-    if [ $runtime -gt 59 ]
+    if [ $runtime -gt 299 ]
         then
         start=`date +%s`
         runtime=$((end-start))
@@ -20,5 +20,5 @@ while true;do
         echo "==============================="
         sudo /home/pi/DOSIFICADOR/script.sh &
     fi
-    
+
 done

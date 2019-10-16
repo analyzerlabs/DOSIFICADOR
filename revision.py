@@ -6,7 +6,7 @@ import curses
 
 def menu(stdscr):
     curses.cur_set(0)
-    h,w= stdscr.getmax(yx)
+    h,w= stdscr.getmax(y,x)
     text = "INICIO"
     x=w//2 - len(text)//2 
     y=h//2
