@@ -54,4 +54,6 @@ session.login(sender_address, sender_pass) #login with mail_id and password
 text = message.as_string()
 session.sendmail(sender_address, receiver_address, text)
 session.quit()
+print('*******************************')
 print('Mail Sent')
+print('*******************************')
