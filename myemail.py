@@ -6,6 +6,7 @@ from email import encoders
 import csv
 import time
 
+print("Enviando Email")
 file_id= open("/home/pi/id.txt","r")
 Serie = file_id.readlines()
 Serie = int(Serie[0])	
@@ -21,12 +22,10 @@ for row in readCSV:
 mail_content = '''
 Email sent from ''' + str(ubicacion[Serie]) + " " + str(seccion[Serie])+'''  \n
 
-Hello,
-This is a test mail.
-In this mail we are sending some attachments.
-The mail is sent using Python SMTP library.
-Thank You
-'''
+Hola,
+Este email esta siendo enviado como parte de la revision
+Ubiacion : ''' +str(ubicacion[Serie]) +'''\n Sector: ''' + str(seccion[Serie]) + "\n Thank you"
+
 #The mail addresses and password
 sender_address = 'dosificadorlimaem@gmail.com'
 sender_pass = 'LimaEM_dosificador'
@@ -35,7 +34,7 @@ receiver_address = 'fisicomiguel@gmail.com'
 message = MIMEMultipart()
 message['From'] = sender_address
 message['To'] = receiver_address
-message['Subject'] = 'A test mail sent by Python. It has an attachment.'
+message['Subject'] = 'Revision y Log Equipo ubicado en ' + str(ubicacion[Serie]) + '  sector : ' + str(seccion[Serie])
 #The subject line
 #The body and the attachments for the mail
 message.attach(MIMEText(mail_content, 'plain'))
