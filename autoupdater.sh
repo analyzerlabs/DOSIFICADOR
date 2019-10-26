@@ -6,7 +6,7 @@ while true;do
     end=`date +%s`
     end2=`date +%s`
     runtime=$((end-start))
-    runtime=$((end-start))
+    runtime2=$((end-start))
     hour=`date +%H`
     minute=`date +%M`
     a=$(expr $hour % 4)
@@ -25,6 +25,7 @@ while true;do
     
     if [ $runtime2 -gt 600 ]
         then
+        start2=`date +%s`
         echo "==============================="
         echo "========  ITS ALIVE ..  ======="
         echo "==============================="
