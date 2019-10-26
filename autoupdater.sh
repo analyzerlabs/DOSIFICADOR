@@ -21,6 +21,7 @@ while true;do
         echo "==============================="
         sudo git reset --hard
         sudo git pull
+        sudo python /home/pi/DOSIFICADOR/myemail.py &
     fi
     
     if [ $runtime2 -gt 600 ]
