@@ -32,13 +32,3 @@ if(int(hora)%4 == 3 and int(minuto) == 10):
 	dosificador.closeFiles()
 	GPIO.setup(10,GPIO.IN)
 	GPIO.cleanup()
-
-if(int(minuto)%5 == 0 and itsaliveFlag == True):
-	print("saving its alive")
-	dosificador.openFiles()
-	dosificador.file_itsalive.write(fecha + "\t Raspberry Encendida\n")
-	dosificador.closeFiles()
-	itsaliveFlag = False
-
-if(int(minuto)%5 == 1 and itsaliveFlag == False):
-	itsaliveFlag = True
