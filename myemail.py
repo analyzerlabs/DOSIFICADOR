@@ -72,14 +72,6 @@ encoders.encode_base64(part)
 part.add_header('Content-Disposition', 'attachment; filename="/home/pi/itsalive.txt"')
 message.attach(part)#Create SMTP session for sending the mail
 
-
-# adjunto numero 5 = intento.txt
-part = MIMEBase('application', 'octet-stream')
-part.set_payload(open("/home/pi/intento.txt", 'rb').read())
-encoders.encode_base64(part)
-part.add_header('Content-Disposition', 'attachment; filename="/home/pi/intento.txt"')
-message.attach(part)#Create SMTP session for sending the mail
-
 session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
 session.starttls() #enable security
 session.login(sender_address, sender_pass) #login with mail_id and password
