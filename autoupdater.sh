@@ -4,8 +4,12 @@ start=`date +%s`
 while true;do
     end=`date +%s`
     runtime=$((end-start))
+    hour=`date +%H`
+    minute=`date +%M`
     echo $runtime
-    if [ $runtime -gt 299 ]
+    a=$(expr $hour % 4)
+    b=$(expr $minute % 15)
+    if [ $runtime -gt 60 ]
         then
         start=`date +%s`
         runtime=$((end-start))
@@ -15,10 +19,26 @@ while true;do
         sudo cp /home/pi/DOSIFICADOR/revision.py /home/pi/revision
         sudo git reset --hard
         sudo git pull
+    fi
+    
+    if [ $b -eq 0 ]
+        then
         echo "==============================="
-        echo "========  EJECUTANDO..  ======="
+        echo "========  ITS ALIVE ..  ======="
         echo "==============================="
-        sudo /home/pi/DOSIFICADOR/script.sh &
+        sudo python /home/pi/DOSIFICADOR/itsalive.py &
+    fi
+
+    if [ $a -eq 3 ]
+        then
+                if [ $minute -eq 10 ]
+                then
+                echo "==============================="
+                echo "========  EJECUTANDO..  ======="
+                echo "==============================="
+                sudo /home/pi/DOSIFICADOR/script.sh &
+                sleep 60
+                fi
     fi
 
 done

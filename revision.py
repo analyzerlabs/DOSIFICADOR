@@ -22,6 +22,5 @@ def openFiles():
     print(fecha)
     return 0
     
-menu()
 openFiles()
 

@@ -6,5 +6,4 @@ readCSV = csv.reader(csvfile,delimiter=';')
 for row in readCSV:
    	vol_dosis.append(row[3])
 
-
 print vol_dosis
