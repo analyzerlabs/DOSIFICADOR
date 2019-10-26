@@ -10,7 +10,7 @@ import time
 print("Enviando Email")
 file_id= open("/home/pi/id.txt","r")
 Serie = file_id.readlines()
-Serie = int(Serie[0])	
+Serie = int(Serie[0])
 ubicacion = []
 seccion = []
 csvfile = open('data.csv')
@@ -26,9 +26,6 @@ Email sent from ''' + str(ubicacion[Serie]) + " " + str(seccion[Serie])+'''  \n
 Hola,
 Este email esta siendo enviado como parte de la revision
 Ubiacion : ''' +str(ubicacion[Serie]) +'''\n Sector: ''' + str(seccion[Serie]) + "\n Thank you"
-
-files = "/home/pi"
-filenames = [os.path.join(files, f) for f in os.listdir(files)]
 
 #The mail addresses and password
 sender_address = 'dosificadorlimaem@gmail.com'
