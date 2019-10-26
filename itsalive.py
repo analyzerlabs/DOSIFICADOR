@@ -7,7 +7,7 @@ import curses
 def openFiles():
     file_itsAlive = open("/home/pi/istalive.txt","a")
     fecha = time.strftime("%m/%d/%Y, %H:%M:%S")
-    file_itsAlive.write(fecha + "\n")
+    file_itsAlive.write(fecha + "t" + "activo \n")
     print("***************************************")
     print("Comprobando si el equipo esta Encendido")
     print("***************************************")

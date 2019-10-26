@@ -6,9 +6,9 @@ while true;do
     runtime=$((end-start))
     hour=`date +%H`
     minute=`date +%M`
-    echo $runtime
+    echo $minute
     a=$(expr $hour % 4)
-    b=$(expr $minute % 15)
+    b=$(expr $minute % 10)
     if [ $runtime -gt 60 ]
         then
         start=`date +%s`
@@ -26,7 +26,7 @@ while true;do
         echo "==============================="
         echo "========  ITS ALIVE ..  ======="
         echo "==============================="
-        sudo python /home/pi/DOSIFICADOR/itsalive.py &
+        sudo python /home/pi/DOSIFICADOR/itsalive.py
     fi
 
     if [ $a -eq 3 ]
