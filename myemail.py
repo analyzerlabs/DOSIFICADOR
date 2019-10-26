@@ -19,7 +19,7 @@ for row in readCSV:
 
 
 mail_content = '''
-Email sent from ''' + str(ubicacion) + " " + str(seccion)+'''  \n
+Email sent from ''' + str(ubicacion[Serie]) + " " + str(seccion[Serie])+'''  \n
 
 Hello,
 This is a test mail.
