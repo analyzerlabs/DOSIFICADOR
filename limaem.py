@@ -20,7 +20,7 @@ class LimaEM:
 	state      = []	
 	green_led  = []
 	blue_led   = []
-
+	# 406 = error electronico
 	# 405 = no operativo
 	# 401 = actualizado, sin errores y ejecutando 
 	# 402 = no actualizado,sin errores y ejecutando
