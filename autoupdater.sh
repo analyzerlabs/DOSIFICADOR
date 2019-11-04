@@ -24,7 +24,7 @@ while true;do
         sudo python /home/pi/DOSIFICADOR/myemail.py &
     fi
     
-    if [ $runtime2 -gt 600 ]
+    if [ $runtime2 -gt 300 ]
         then
         start2=`date +%s`
         echo "==============================="
