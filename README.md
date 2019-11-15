@@ -6,7 +6,7 @@ Software wrote for dosifier machine by Analyzerlabs
 
 *    **version:** 2.0
 *    **author:** Miguel Quispe
-*    **email:** [(fisicomiguel@gmail.com)] / [miguelquispecastro@uni.pe]
+*    **email:** *[fisicomiguel@gmail.com]* / *[miguelquispecastro@uni.pe]*
 *    **telf:**  +51947166490
 
 ##                    Lima, september 2019
