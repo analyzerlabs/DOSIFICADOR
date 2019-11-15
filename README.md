@@ -3,7 +3,7 @@
 Dosificador de materiales biodegradadores de grasas en trampas de desagues
 
 
-##    Software wrote for Arduino Mega by Analyzerlabs 
+##    Software wrote for dosifier machine by Analyzerlabs 
 ##    version: 1.2 
 ##    author: Miguel Quispe
 ##    email: fisicomiguel@gmail.com / miguelquispecastro@uni.pe
