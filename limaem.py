@@ -34,11 +34,10 @@ class LimaEM:
 	def __init__(self,serie):	
 		self.openFiles()
 		self.Serie = self.file_id.readlines()
-	 	self.Serie = int(self.Serie[0])
+		self.Serie = int(self.Serie[0])
 		csvfile = open('data.csv')
 		readCSV = csv.reader(csvfile,delimiter=';')
-		for row in readCSV:
-    		
+		for row in readCSV:	
 			self.vol_dosis.append(row[3])
 			self.init_dosis.append(row[4])
 			self.min_angle.append(row[6])
@@ -94,7 +93,7 @@ class LimaEM:
 		print (self.cont)
 
 	def openValve(self):
-    		for i in range(0,int(self.delta_angle[self.Serie])):
+		for i in range(0,int(self.delta_angle[self.Serie])):
 			time.sleep(float(self.delta_t[self.Serie]))
 			self.m.ChangeDutyCycle(int(self.max_angle[self.Serie])-i)
 
