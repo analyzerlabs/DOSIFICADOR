@@ -14,7 +14,7 @@ Serie = int(Serie[0])
 ubicacion = []
 seccion = []
 csvfile = open('data.csv')
-readCSV = csv.reader(csvfile,delimiter=';')
+readCSV = csv.reader(csvfile,delimiter=',')
 for row in readCSV:
         ubicacion.append(row[1]) 
         seccion.append(row[2])

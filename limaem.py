@@ -36,7 +36,7 @@ class LimaEM:
 		self.Serie = self.file_id.readlines()
 		self.Serie = int(self.Serie[0])
 		csvfile = open('data.csv')
-		readCSV = csv.reader(csvfile,delimiter=';')
+		readCSV = csv.reader(csvfile,delimiter=',')
 		for row in readCSV:	
 			self.vol_dosis.append(row[3])
 			self.init_dosis.append(row[4])
