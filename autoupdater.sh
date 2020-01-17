@@ -2,7 +2,6 @@
 cd /home/pi/DOSIFICADOR
 start=`date +%s`
 start2=`date +%s`
-sudo python /home/pi/DOSIFICADOR/poweronled.py &
 
 while true;do
     end=`date +%s`
@@ -24,6 +23,7 @@ while true;do
         sudo git reset --hard
         sudo git pull
         sudo python /home/pi/DOSIFICADOR/myemail.py &
+        sudo python /home/pi/DOSIFICADOR/itsaliveled.py
     fi
     
     if [ $runtime2 -gt 300 ]
@@ -44,10 +44,9 @@ while true;do
                 echo "========  EJECUTANDO..  ======="
                 echo "==============================="
                 sudo /home/pi/DOSIFICADOR/script.sh &
-                sudo python /home/pi/DOSIFICADOR/runningledon
+                sudo python /home/pi/DOSIFICADOR/blueledon.py
                 sleep 60
             fi
-            sudo python /home/pi/DOSIFICADOR/runningledoff
-
+            sudo python /home/pi/DOSIFICADOR/blueledoff.py
     fi
 done

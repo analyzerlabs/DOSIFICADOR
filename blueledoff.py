@@ -19,8 +19,4 @@ for row in readCSV:
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(int(green_led[Serie]), GPIO.OUT)  # set a port/pin as an input
 
-while veces < 50:
-    veces = veces + 1
-    state = 1- state
-    GPIO.output(int(green_led[Serie]),state)
-    time.sleep(0.2)
+GPIO.output(int(green_led[Serie]),0)
