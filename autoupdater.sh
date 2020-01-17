@@ -2,6 +2,8 @@
 cd /home/pi/DOSIFICADOR
 start=`date +%s`
 start2=`date +%s`
+sudo python /home/pi/DOSIFICADOR/poweronled.py &
+
 while true;do
     end=`date +%s`
     end2=`date +%s`
@@ -31,17 +33,21 @@ while true;do
         echo "========  ITS ALIVE ..  ======="
         echo "==============================="
         sudo python /home/pi/DOSIFICADOR/itsalive.py &
+        sudo python /home/pi/DOSIFICADOR/itsaliveled.py
     fi
 
     if [ $a -eq 3 ]
         then
-                if [ $minute -eq 10 ]
+            if [ $minute -eq 10 ]
                 then
                 echo "==============================="
                 echo "========  EJECUTANDO..  ======="
                 echo "==============================="
                 sudo /home/pi/DOSIFICADOR/script.sh &
+                sudo python /home/pi/DOSIFICADOR/runningledon
                 sleep 60
-                fi
+            fi
+            sudo python /home/pi/DOSIFICADOR/runningledoff
+
     fi
 done
