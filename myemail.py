@@ -13,7 +13,7 @@ Serie = file_id.readlines()
 Serie = int(Serie[0])
 ubicacion = []
 seccion = []
-csvfile = open('data.csv')
+csvfile = open("/home/pi/DOSIFICADOR/data.csv")
 readCSV = csv.reader(csvfile,delimiter=',')
 for row in readCSV:
         ubicacion.append(row[1]) 
