@@ -45,7 +45,7 @@ message.attach(MIMEText(mail_content, 'plain'))
 
 # adjunto numero 1 = lastrev.txt
 part = MIMEBase('application', 'octet-stream')
-part.set_payload(open("/home/pi/lastRev.txt", 'rb').read())
+part.set_payload(open("/home/pi/intento.txt", 'rb').read())
 encoders.encode_base64(part)
 part.add_header('Content-Disposition', 'attachment; filename="/home/pi/lastRev.txt"')
 message.attach(part)#Create SMTP session for sending the mail
